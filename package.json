@@ -1,11 +1,11 @@
 {
-  "name": "ionic-filelogger",
+  "name": "ionic-ols-filelogger",
   "private": false,
   "main": "dist/filelogger",
   "version": "1.3.2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pbakondy/filelogger.git"
+    "url": "https://github.com/oneleopardstory/filelogger.git"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -23,7 +23,7 @@
     "ng-cordova": "^0.1.26-alpha"
   },
   "bugs": {
-    "url": "https://github.com/pbakondy/filelogger/issues"
+    "url": "https://github.com/oneleopardstory/filelogger/issues"
   },
-  "homepage": "https://github.com/pbakondy/filelogger#readme"
+  "homepage": "https://github.com/oneleopardstory/filelogger#readme"
 }

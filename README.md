@@ -183,7 +183,7 @@ angular.module('starter', ['ionic', 'fileLogger'])
 
 #### Peter Bakondy
 
-- https://github.com/pbakondy
+- https://github.com/oneleopardstory
 
 
 ## LICENSE

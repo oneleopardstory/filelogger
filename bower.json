@@ -1,8 +1,8 @@
 {
-  "name": "filelogger",
-  "homepage": "https://github.com/pbakondy/filelogger",
+  "name": "ols-filelogger",
+  "homepage": "https://github.com/oneleopardstory/filelogger",
   "authors": [
-    "Peter Bakondy <pbakondy@gmail.com>"
+    "Peter Bakondy <oneleopardstory@openfind.com.tw>"
   ],
   "description": "Ionic library to log messages to local filesystem",
   "main": "./dist/filelogger.min.js",
