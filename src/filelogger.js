@@ -17,6 +17,7 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
     var levels = ['DEBUG', 'INFO', 'WARN', 'ERROR'];
 
     var storageFilename = 'messages.log';
+    var storageFolder = '';
 
     var dateFormat;
     var dateTimezone;
@@ -176,10 +177,19 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
           return q.promise;
         }
 
-        $cordovaFile.checkFile(cordova.file.dataDirectory, storageFilename).then(
+        if (angular.isString(storageFolder) && storageFolder.length !== 0) {
+          $cordovaFile.checkDir(cordova.file.dataDirectory, storageFolder).then(function(success) {
+          }, function(error) {
+            $cordovaFile.createDir(cordova.file.dataDirectory, storageFolder, true).then(function(success) {
+            }, function(error) {
+            });
+          });
+        }
+
+        $cordovaFile.checkFile(cordova.file.dataDirectory + storageFolder, storageFilename).then(
           function() {
             // writeExistingFile(path, fileName, text)
-            $cordovaFile.writeExistingFile(cordova.file.dataDirectory, storageFilename, message).then(
+            $cordovaFile.writeExistingFile(cordova.file.dataDirectory + storageFolder, storageFilename, message).then(
               function() {
                 q.resolve();
               },
@@ -190,7 +200,7 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
           },
           function() {
             // writeFile(path, fileName, text, replaceBool)
-            $cordovaFile.writeFile(cordova.file.dataDirectory, storageFilename, message, true).then(
+            $cordovaFile.writeFile(cordova.file.dataDirectory + storageFolder, storageFilename, message, true).then(
               function() {
                 q.resolve();
               },
@@ -219,7 +229,7 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
           return q.promise;
         }
 
-        $cordovaFile.readAsText(cordova.file.dataDirectory, storageFilename).then(
+        $cordovaFile.readAsText(cordova.file.dataDirectory + storageFolder, storageFilename).then(
           function(result) {
             q.resolve(result);
           },
@@ -246,7 +256,7 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
           return q.promise;
         }
 
-        $cordovaFile.removeFile(cordova.file.dataDirectory, storageFilename).then(
+        $cordovaFile.removeFile(cordova.file.dataDirectory + storageFolder, storageFilename).then(
           function(result) {
             q.resolve(result);
           },
@@ -263,6 +273,16 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
     function setStorageFilename(filename) {
       if (angular.isString(filename) && filename.length > 0) {
         storageFilename = filename;
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+
+    function setStorageFolder(folder) {
+      if (angular.isString(folder) && folder.length > 0) {
+        storageFolder = folder;
         return true;
       } else {
         return false;
@@ -302,7 +322,7 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
           return q.promise;
         }
 
-        $cordovaFile.checkFile(cordova.file.dataDirectory, storageFilename).then(function(fileEntry) {
+        $cordovaFile.checkFile(cordova.file.dataDirectory + storageFolder, storageFilename).then(function(fileEntry) {
           fileEntry.file(q.resolve, q.reject);
         }, q.reject);
 
@@ -344,6 +364,7 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
       getLogfile: getLogfile,
       deleteLogfile: deleteLogfile,
       setStorageFilename: setStorageFilename,
+      setStorageFolder: setStorageFolder,
       setTimestampFormat: setTimestampFormat,
       checkFile: checkFile,
       debug: debug,
