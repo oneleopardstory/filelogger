@@ -200,7 +200,7 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
           return q.promise;
         }
 
-	createSubFolder();
+        createSubFolder();
         console.log('before check file with folder:', storageRootFolder + storageSubFolder + '/');
         $cordovaFile.checkFile(storageRootFolder + storageSubFolder + '/', storageFilename).then(
           function() {
@@ -247,7 +247,7 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
           return q.promise;
         }
 
-	createSubFolder();
+        createSubFolder();
         $cordovaFile.readAsText(storageRootFolder + storageSubFolder + '/', storageFilename).then(
           function(result) {
             q.resolve(result);
@@ -275,7 +275,7 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
           return q.promise;
         }
 
-	createSubFolder();
+        createSubFolder();
         $cordovaFile.removeFile(storageRootFolder + storageSubFolder + '/', storageFilename).then(
           function(result) {
             q.resolve(result);
@@ -351,7 +351,7 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
           return q.promise;
         }
 
-	createSubFolder();
+        createSubFolder();
         $cordovaFile.checkFile(storageRootFolder + storageSubFolder + '/', storageFilename).then(function(fileEntry) {
           fileEntry.file(q.resolve, q.reject);
         }, q.reject);
