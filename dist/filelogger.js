@@ -23,7 +23,7 @@ angular.module('fileLogger', ['ngCordova.plugins.file'])
     var levels = ['DEBUG', 'INFO', 'WARN', 'ERROR'];
 
     var storageFilename = 'messages.log';
-    var storageRootFolder = cordova.file.dataDirectory;
+    var storageRootFolder;
     var storageSubFolder = '';
 
     var dateFormat;
